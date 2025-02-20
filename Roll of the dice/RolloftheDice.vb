@@ -15,18 +15,18 @@ Module RolloftheDice
     End Sub
 
     Sub TestRandomness()
-        Dim beanCounter(20) As Integer
+        Dim beanCounter(10) As Integer
 
-        For i = 1 To 1000000
+        For i = 1 To 1000
 
-            beanCounter(randomNumberBetween(5, 16)) += 1 'the return is the pointer for the array
+            beanCounter(randomNumberBetween(2, 10)) += 1 'the return is the pointer for the array
 
 
         Next
 
         For i = LBound(beanCounter) To UBound(beanCounter)
 
-            Console.WriteLine($"{i} hit {beanCounter(i)} times!")
+            Console.WriteLine($"{i} | {beanCounter(i)}")
 
         Next
 
