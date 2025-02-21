@@ -11,7 +11,7 @@
 Module RolloftheDice
 
     Sub Main()
-        Dim beanCounter(14) As Integer
+        Dim beanCounter(12) As Integer
         TestRandomness(beanCounter)
         DisplayBoard(beanCounter)
     End Sub
@@ -25,9 +25,9 @@ Module RolloftheDice
 
         Next
 
-        For i = LBound(beanCounter) To UBound(beanCounter)
+        For i = 2 To UBound(beanCounter)
 
-            Console.WriteLine($"{i} | {beanCounter(i)}")
+            Console.WriteLine($"{i}|{beanCounter(i)}")
 
         Next
 
@@ -52,38 +52,47 @@ Module RolloftheDice
 
     Sub DisplayBoard(beanCounter() As Integer)
         'Dim temp As String = "X |"
-        Dim heading() As String = {"2 |", "3 |", "4 |", "5 |", "6 |", "7 |", "8 |", "9 |", "10 |", "11 |", "12 |"}
+        Dim heading() As String = {"2|", "3|", "4|", "5|", "6|", "7|", "8|", "9|", "10|", "11|", "12|"}
         Dim board(4, 4) As String
         Dim counterIndex As Integer = 0
 
-        For i = 0 To 4
-            For j = 0 To 4
-                If counterIndex <= 12 Then
-                    board(i, j) = beanCounter(counterIndex).ToString().PadLeft(3)
-                    counterIndex += 1
-                Else
-                    board(i, j) = "x"
-                End If
-            Next
-        Next
+        'For i = 1 To 4
+        '    For j = 1 To 4
+        '        If counterIndex <= 12 Then
+        '            board(i, j) = beanCounter(counterIndex).ToString().PadLeft(3)
+        '            counterIndex += 1
+        '        Else
+        '            board(i, j) = "x"
+        '        End If
+        '    Next
+        'Next
 
-        Console.Write("| ")
+        Console.Write("|")
 
         For Each letter In heading
-            Console.Write(letter.PadLeft(3).PadRight(5))
+            Console.Write(letter.PadLeft(2).PadRight(4))
         Next
         Console.WriteLine()
-        Console.WriteLine(StrDup(25, "_"))
-        For i = 0 To 4
-            For j = 0 To 4
-                Console.Write(board(i, j).PadLeft(5))
-                'temp = temp.PadLeft(5)
-                'Console.Write(temp)
-            Next
-            Console.WriteLine()
+        'Console.WriteLine(StrDup(25, "_"))
+        'For i = 1 To 4
+        'For j = 1 To 4
+        'Console.Write(board(i, j).PadLeft(5))
+        'temp = temp.PadLeft(5)
+        'Console.Write(temp)
+        'Next
+        'Console.WriteLine()
+        'Next
+
+        Console.WriteLine(StrDup(75, "-")) ' Print a horizontal line separator
+
+        Console.Write("|")
+
+        For i = 2 To UBound(beanCounter)
+            Console.Write($"{beanCounter(i)}|".PadLeft(1)) ' Print number with spacing and separator
         Next
+
+        Console.WriteLine() ' Move to the next line after printing all numbers
+
+
     End Sub
-
-
-
 End Module
