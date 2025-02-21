@@ -12,7 +12,7 @@ Module RolloftheDice
 
     Sub Main()
         Dim beanCounter(12) As Integer
-        TestRandomness(beanCounter)
+        ' TestRandomness(beanCounter)
         DisplayBoard(beanCounter)
     End Sub
 
@@ -21,7 +21,6 @@ Module RolloftheDice
         For i = 1 To 1000
 
             beanCounter(randomNumberBetween(1, 13)) += 1 'the return is the pointer for the array
-
 
         Next
 
@@ -39,60 +38,32 @@ Module RolloftheDice
         Randomize()
         temp = Rnd()
         temp = temp * (max - min + 1) + min
-        'establish range 
-        'temp *= (max + 1) - min  'supposedly adding the one increase the max by 1. to fix inclusivity of max/min
-
-        'temp += min - 1 'This is supposed to shift the min down by 1
-        'Return CInt(temp) 'bad randomness
-        'Return CInt(Int(temp)) 'Randomness is ok, but max isn't included
-        'Return CInt(Math.Floor(temp)) 'randomness is ok, but max isn't included
         Return CInt(Math.Floor(temp)) 'min isn't included
         'Return CInt(Math.Ceiling(temp)) 'Always remember a function needs to return
     End Function
 
     Sub DisplayBoard(beanCounter() As Integer)
-        'Dim temp As String = "X |"
-        Dim heading() As String = {"2|", "3|", "4|", "5|", "6|", "7|", "8|", "9|", "10|", "11|", "12|"}
-        Dim board(4, 4) As String
-        Dim counterIndex As Integer = 0
+        Dim heading() As String = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
+        Dim columnWidth As Integer = 6 ' Set a consistent width for alignment
+        Console.WriteLine("                          Roll of the Dice")
+        Console.WriteLine(StrDup((columnWidth + 1) * heading.Length + 1, "-"))
 
-        'For i = 1 To 4
-        '    For j = 1 To 4
-        '        If counterIndex <= 12 Then
-        '            board(i, j) = beanCounter(counterIndex).ToString().PadLeft(3)
-        '            counterIndex += 1
-        '        Else
-        '            board(i, j) = "x"
-        '        End If
-        '    Next
-        'Next
-
+        'Console.Write(heading(0))
+        ' Print header
         Console.Write("|")
-
-        For Each letter In heading
-            Console.Write(letter.PadLeft(2).PadRight(4))
+        For Each number In heading
+            Console.Write(number.PadLeft(columnWidth) & "|")
         Next
         Console.WriteLine()
-        'Console.WriteLine(StrDup(25, "_"))
-        'For i = 1 To 4
-        'For j = 1 To 4
-        'Console.Write(board(i, j).PadLeft(5))
-        'temp = temp.PadLeft(5)
-        'Console.Write(temp)
-        'Next
-        'Console.WriteLine()
-        'Next
 
-        Console.WriteLine(StrDup(75, "-")) ' Print a horizontal line separator
+        ' Print separator line
+        Console.WriteLine(StrDup((columnWidth + 1) * heading.Length + 1, "-"))
 
+        ' Print values
         Console.Write("|")
-
         For i = 2 To UBound(beanCounter)
-            Console.Write($"{beanCounter(i)}|".PadLeft(1)) ' Print number with spacing and separator
+            Console.Write(beanCounter(i).ToString().PadLeft(columnWidth) & "|")
         Next
-
-        Console.WriteLine() ' Move to the next line after printing all numbers
-
-
+        Console.WriteLine()
     End Sub
 End Module
