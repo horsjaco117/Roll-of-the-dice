@@ -17,7 +17,7 @@ Module RolloftheDice
         DisplayBoard(beanCounter) 'Things are organized into a board
     End Sub
 
-    Sub TestRandomness(ByRef beanCounter() As Integer)
+    Sub TestRandomness(ByRef beanCounter() As Integer) 'Random generator
 
         For i = 1 To 1000
 
@@ -36,13 +36,13 @@ Module RolloftheDice
         Return CInt(Math.Floor(temp)) 'min isn't included
     End Function
 
-    Sub DisplayBoard(diceCounter() As Integer)
+    Sub DisplayBoard(diceCounter() As Integer) 'The board for the dice rolls
         Dim heading() As String = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
         Dim columnWidth As Integer = 6 ' Set a consistent width for alignment
         Console.WriteLine("                             Roll of the Dice")
         Console.WriteLine(StrDup((columnWidth + 1) * heading.Length + 1, "-"))
 
-        Console.Write("|")
+        Console.Write("|") 'Line dividers
         For Each number In heading
             Console.Write(number.PadLeft(columnWidth) & "|")
         Next
@@ -53,7 +53,7 @@ Module RolloftheDice
         Console.WriteLine(StrDup((columnWidth + 1) * heading.Length + 1, "-"))
 
         ' Print values
-        Console.Write("|")
+        Console.Write("|") 'Adjustments for spacing
         For i = 2 To UBound(diceCounter)
             Console.Write(diceCounter(i).ToString().PadLeft(columnWidth) & "|")
         Next
